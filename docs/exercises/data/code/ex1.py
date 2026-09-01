@@ -61,13 +61,37 @@ def generate_clouds(scale=1.0):
 
 points, labels = generate_clouds(scale=1.0)
 
-# Sanity check: shapes, class counts, and empirical vs. design parameters.
-print("points", points.shape, " labels", labels.shape, " counts", np.bincount(labels))
-print(f"{'class':<6} {'empirical mean':<20} {'design mean':<16} {'empirical std':<20} {'design std'}")
-for class_index in range(N_CLASSES):
-    in_class = points[labels == class_index]
-    print(
-        f"{class_index:<6} {str(in_class.mean(axis=0).round(2)):<20} "
-        f"{str(CLASS_MEANS[class_index]):<16} {str(in_class.std(axis=0).round(2)):<20} "
-        f"{CLASS_STDS[class_index]}"
+
+# %%
+CLASS_COLORS = ["#4C72B0", "#DD8452", "#55A868", "#C44E52"]
+
+
+def plot_figure_1(points, labels):
+    """Figure 1 — the four clouds at s = 1, with each class centre marked."""
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    for class_index in range(N_CLASSES):
+        in_class = points[labels == class_index]
+        ax.scatter(
+            in_class[:, 0], in_class[:, 1],
+            s=18, alpha=0.6, color=CLASS_COLORS[class_index],
+            label=f"Class {class_index}",
+        )
+
+    ax.scatter(
+        CLASS_MEANS[:, 0], CLASS_MEANS[:, 1],
+        marker="X", s=220, c=CLASS_COLORS, edgecolors="black", linewidths=1.5,
+        zorder=3, label="Class centres",
     )
+
+    ax.set_title("Figure 1 — Four Gaussian point clouds in 2D ($s = 1$)")
+    ax.set_xlabel("$x_1$")
+    ax.set_ylabel("$x_2$")
+    ax.legend(loc="upper left", framealpha=0.9)
+    ax.grid(alpha=0.2)
+
+    fig.savefig(figures_dir / "fig1.png", dpi=150, bbox_inches="tight")
+    return fig
+
+
+plot_figure_1(points, labels)
