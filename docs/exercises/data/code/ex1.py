@@ -14,7 +14,15 @@ import numpy as np
 # One generator for the whole report, as the statement requires.
 rng = np.random.default_rng(42)
 
-FIGURES = Path(__file__).resolve().parent.parent / "figures"
+# Resolve paths whether this runs as a script (__file__ exists) or in a
+# Jupyter kernel (it does not) — walk up to the repo root, marked by mkdocs.yml.
+try:
+    HERE = Path(__file__).resolve().parent
+except NameError:
+    root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / "mkdocs.yml").exists())
+    HERE = root / "docs" / "exercises" / "data" / "code"
+
+FIGURES = HERE.parent / "figures"
 FIGURES.mkdir(exist_ok=True)
 
 # Class parameters from item A. Row k is class k.
