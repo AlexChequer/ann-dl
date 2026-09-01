@@ -13,6 +13,8 @@ jobs:
      
   # Build and deploy documentation site
   deploy:
+    permissions:
+      contents: write
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
