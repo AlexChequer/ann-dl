@@ -1,16 +1,15 @@
-"""Exercise 1 — Point clouds: geometry and spread in 2D.
+# %% [markdown]
+# # Exercise 1 — Point clouds: geometry and spread in 2D
+#
+# Run as a script:   .venv/bin/python docs/exercises/data/code/ex1.py
+# Or interactively:  Shift+Enter on any `# %%` cell (VS Code Interactive Window).
 
-Run from anywhere:  .venv/bin/python docs/exercises/data/code/ex1.py
-Figures are written to ../figures/ next to this file.
-"""
-
+# %%
 from itertools import combinations
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-
-# --- harness -----------------------------------------------------------------
 
 # One generator for the whole report, as the statement requires.
 rng = np.random.default_rng(42)
@@ -26,15 +25,16 @@ SCALES = [0.5, 1.0, 2.0, 4.0]
 
 
 def save(fig, name):
-    """Write a figure to figures/<name>.png and report where it went."""
+    """Write a figure to figures/<name>.png."""
     path = FIGURES / f"{name}.png"
     fig.savefig(path, dpi=150, bbox_inches="tight")
-    plt.close(fig)
-    print(f"  wrote {path.relative_to(Path.cwd()) if path.is_relative_to(Path.cwd()) else path}")
+    print(f"  wrote {path.name}")
 
 
-# --- A: generate the clouds --------------------------------------------------
+# %% [markdown]
+# ## A — Generate the clouds
 
+# %%
 def make_clouds(scale=1.0):
     """Return (X, y) for the 4 classes with all stds multiplied by `scale`.
 
@@ -54,8 +54,10 @@ def figure_1(X, y):
     raise NotImplementedError
 
 
-# --- B: spread ---------------------------------------------------------------
+# %% [markdown]
+# ## B — More or less spread out
 
+# %%
 def figure_2(datasets):
     """4 subplots, one per scale, sharing axis limits (rubric: shared axes)."""
     raise NotImplementedError
@@ -84,15 +86,18 @@ def figure_3(rates):
     raise NotImplementedError
 
 
-# --- main --------------------------------------------------------------------
+# %% [markdown]
+# ## Run everything
+#
+# Every number printed here goes into the report text and the Results summary.
 
+# %%
 def main():
     print("Exercise 1")
     # TODO: build the s=1 dataset, draw Figure 1
     # TODO: build all four datasets, draw Figure 2
     # TODO: print the r_ij table, name the smallest pair, state its value at s=2
     # TODO: print the mixing rate for each s, draw Figure 3
-    # Every number printed here goes into the report text and Results summary.
 
 
 if __name__ == "__main__":
