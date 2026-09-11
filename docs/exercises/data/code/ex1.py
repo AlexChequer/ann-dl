@@ -8,7 +8,6 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-# One generator for the whole report, as the statement requires.
 rng = np.random.default_rng(42)
 
 # Resolve paths whether this runs as a script (__file__ exists) or in a
@@ -32,25 +31,13 @@ SAMPLES_PER_CLASS = 100
 SCALE_FACTORS = [0.5, 1.0, 2.0, 4.0]
 
 # %% [markdown]
-# ## A — Generate the clouds
+# ## A - Generate the clouds
 
 # %%
-# Draw the cloud "shapes" once: standard_shapes[k] holds class k's 100 points,
-# each drawn from a standard normal. Reusing the same shapes across every scale
-# factor is the common-random-numbers choice — Figure 2's panels then differ
-# only because of s, never because the data was resampled. (For independent
-# draws instead, move this line inside generate_clouds so each call redraws.)
 standard_shapes = rng.standard_normal((N_CLASSES, SAMPLES_PER_CLASS, N_DIMENSIONS))
 
 
 def generate_clouds(scale=1.0):
-    """Return (points, labels) for the 4 classes, every std multiplied by `scale`.
-
-    A standard normal z becomes a point of class k via x = mean_k + s * std_k * z.
-    CLASS_MEANS[k] and CLASS_STDS[k] are length-2 while standard_shapes[k] is
-    (100, 2), so NumPy broadcasts the parameters down the columns: column 0 gets
-    the x parameters, column 1 the y.
-    """
     points = np.vstack([
         CLASS_MEANS[class_index] + scale * CLASS_STDS[class_index] * standard_shapes[class_index]
         for class_index in range(N_CLASSES)
