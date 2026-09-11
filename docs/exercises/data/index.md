@@ -1,6 +1,6 @@
 ---
 exercise: data
-ai_use: "TODO — declare before submitting"
+ai_use: "Claude (Claude Code) was used throughout: repository scaffolding, the three scripts under code/, the figures, and the drafting of this report. I directed the work, chose the approach at each decision point (common random numbers in Ex1, median imputation and min-max scaling to [-1,1] in Ex3), and reviewed and understand every part of what is submitted."
 ---
 
 # Exercise 1 — Data
