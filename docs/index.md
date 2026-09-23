@@ -9,3 +9,5 @@ deliverable at a time.
 
 - [Data](exercises/data/index.md) — synthetic point clouds, non-linearity in 5D,
   and preprocessing real-world data for a `tanh` network.
+- [Perceptron](exercises/perceptron/index.md) — training one perceptron on
+  separable and overlapping data, and the pocket algorithm.
