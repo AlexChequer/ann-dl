@@ -11,3 +11,5 @@ deliverable at a time.
   and preprocessing real-world data for a `tanh` network.
 - [Perceptron](exercises/perceptron/index.md) — training one perceptron on
   separable and overlapping data, and the pocket algorithm.
+- [MLP](exercises/mlp/index.md) — one backpropagation step by hand, an MLP
+  from scratch for binary and multi-class data, and whether depth helps.
