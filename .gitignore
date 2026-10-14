@@ -5,3 +5,6 @@ env/
 target/
 .venv/
 
+
+# Personal study notes (not part of the submission)
+ESTUDO.md
